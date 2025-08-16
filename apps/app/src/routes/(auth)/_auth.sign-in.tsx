@@ -4,6 +4,7 @@ import { Button, buttonVariants } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { InputSecret } from "@/components/ui/input-secret";
 import { Label } from "@/components/ui/label";
+import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/(auth)/_auth/sign-in")({
 	head: () => ({
@@ -38,7 +39,15 @@ function RouteComponent() {
 					</div>
 				</div>
 				<div className="grid gap-3">
-					<Label>Password</Label>
+					<div className="flex justify-between">
+						<Label>Password</Label>
+						<Link
+							to="/forgot-password"
+							className={cn(buttonVariants({ variant: "link", size: "xs", className: "h-5" }))}
+						>
+							Forgot password?
+						</Link>
+					</div>
 					<InputSecret className="h-11 border-transparent bg-muted shadow-none" />
 				</div>
 				<div className="grid">

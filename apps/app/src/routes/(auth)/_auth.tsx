@@ -22,10 +22,6 @@ const AUTH_ROUTES: { to: string; label: string }[] = [
 		label: "Create Account",
 	},
 	{
-		to: "/verify-account",
-		label: "Verify Account",
-	},
-	{
 		to: "/forgot-password",
 		label: "Forgot password?",
 	},

@@ -13,7 +13,6 @@ import { createFileRoute } from '@tanstack/react-router'
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as authAuthRouteImport } from './routes/(auth)/_auth'
-import { Route as authAuthVerifyAccountRouteImport } from './routes/(auth)/_auth.verify-account'
 import { Route as authAuthSignUpRouteImport } from './routes/(auth)/_auth.sign-up'
 import { Route as authAuthSignInRouteImport } from './routes/(auth)/_auth.sign-in'
 import { Route as authAuthForgotPasswordRouteImport } from './routes/(auth)/_auth.forgot-password'
@@ -32,11 +31,6 @@ const IndexRoute = IndexRouteImport.update({
 const authAuthRoute = authAuthRouteImport.update({
   id: '/_auth',
   getParentRoute: () => authRoute,
-} as any)
-const authAuthVerifyAccountRoute = authAuthVerifyAccountRouteImport.update({
-  id: '/verify-account',
-  path: '/verify-account',
-  getParentRoute: () => authAuthRoute,
 } as any)
 const authAuthSignUpRoute = authAuthSignUpRouteImport.update({
   id: '/sign-up',
@@ -59,14 +53,12 @@ export interface FileRoutesByFullPath {
   '/forgot-password': typeof authAuthForgotPasswordRoute
   '/sign-in': typeof authAuthSignInRoute
   '/sign-up': typeof authAuthSignUpRoute
-  '/verify-account': typeof authAuthVerifyAccountRoute
 }
 export interface FileRoutesByTo {
   '/': typeof authAuthRouteWithChildren
   '/forgot-password': typeof authAuthForgotPasswordRoute
   '/sign-in': typeof authAuthSignInRoute
   '/sign-up': typeof authAuthSignUpRoute
-  '/verify-account': typeof authAuthVerifyAccountRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -76,18 +68,12 @@ export interface FileRoutesById {
   '/(auth)/_auth/forgot-password': typeof authAuthForgotPasswordRoute
   '/(auth)/_auth/sign-in': typeof authAuthSignInRoute
   '/(auth)/_auth/sign-up': typeof authAuthSignUpRoute
-  '/(auth)/_auth/verify-account': typeof authAuthVerifyAccountRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths:
-    | '/'
-    | '/forgot-password'
-    | '/sign-in'
-    | '/sign-up'
-    | '/verify-account'
+  fullPaths: '/' | '/forgot-password' | '/sign-in' | '/sign-up'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/forgot-password' | '/sign-in' | '/sign-up' | '/verify-account'
+  to: '/' | '/forgot-password' | '/sign-in' | '/sign-up'
   id:
     | '__root__'
     | '/'
@@ -96,7 +82,6 @@ export interface FileRouteTypes {
     | '/(auth)/_auth/forgot-password'
     | '/(auth)/_auth/sign-in'
     | '/(auth)/_auth/sign-up'
-    | '/(auth)/_auth/verify-account'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -127,13 +112,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof authAuthRouteImport
       parentRoute: typeof authRoute
     }
-    '/(auth)/_auth/verify-account': {
-      id: '/(auth)/_auth/verify-account'
-      path: '/verify-account'
-      fullPath: '/verify-account'
-      preLoaderRoute: typeof authAuthVerifyAccountRouteImport
-      parentRoute: typeof authAuthRoute
-    }
     '/(auth)/_auth/sign-up': {
       id: '/(auth)/_auth/sign-up'
       path: '/sign-up'
@@ -162,14 +140,12 @@ interface authAuthRouteChildren {
   authAuthForgotPasswordRoute: typeof authAuthForgotPasswordRoute
   authAuthSignInRoute: typeof authAuthSignInRoute
   authAuthSignUpRoute: typeof authAuthSignUpRoute
-  authAuthVerifyAccountRoute: typeof authAuthVerifyAccountRoute
 }
 
 const authAuthRouteChildren: authAuthRouteChildren = {
   authAuthForgotPasswordRoute: authAuthForgotPasswordRoute,
   authAuthSignInRoute: authAuthSignInRoute,
   authAuthSignUpRoute: authAuthSignUpRoute,
-  authAuthVerifyAccountRoute: authAuthVerifyAccountRoute,
 }
 
 const authAuthRouteWithChildren = authAuthRoute._addFileChildren(
