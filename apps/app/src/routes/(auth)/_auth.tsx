@@ -1,5 +1,6 @@
 import { createFileRoute, Link, Outlet } from "@tanstack/react-router";
 import { LinkIcon } from "lucide-react";
+import { Fragment } from "react";
 import { ThemeToggle } from "@/components/theme/theme.toggle";
 import { buttonVariants } from "@/components/ui/button";
 
@@ -32,8 +33,8 @@ const AUTH_ROUTES: { to: string; label: string }[] = [
 
 function RouteComponent() {
 	return (
-		<div>
-			<header className="sticky inset-x-0 top-0 border-b px-2 py-1.5">
+		<Fragment>
+			<header className="fixed inset-x-0 top-0 border-b px-2 py-1.5">
 				<ul className="flex items-center gap-4">
 					{AUTH_ROUTES.map((r) => (
 						<li key={r.to}>
@@ -48,7 +49,11 @@ function RouteComponent() {
 					</li>
 				</ul>
 			</header>
-			<Outlet />
-		</div>
+			<main className="flex min-h-svh flex-col items-center justify-center bg-background p-6 md:p-10">
+				<section className="w-full max-w-xs">
+					<Outlet />
+				</section>
+			</main>
+		</Fragment>
 	);
 }

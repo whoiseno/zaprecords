@@ -13,8 +13,8 @@ const ROUTES: { to: string; label: string }[] = [{ to: "/sign-in", label: "Authe
 function RouteComponent() {
 	return (
 		<Fragment>
-			<header className="sticky inset-x-0 top-0 border-b px-2 py-1.5">
-				<ul>
+			<header className="fixed inset-x-0 top-0 border-b px-2 py-1.5">
+				<ul className="flex items-center gap-4">
 					{ROUTES.map((r) => (
 						<li key={r.to}>
 							<Link to={r.to} className={buttonVariants({ variant: "ghost", size: "sm" })}>
