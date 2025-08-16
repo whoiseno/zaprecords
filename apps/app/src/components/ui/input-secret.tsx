@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 
-export function InputSecret({ className, id, ...props }: Omit<React.ComponentProps<"input">, "type">) {
+export function InputSecret({ className, id, placeholder, ...props }: Omit<React.ComponentProps<"input">, "type">) {
 	const [isVisible, setIsVisible] = useState<boolean>(false);
 
 	const toggleVisibility = () => setIsVisible((prevState) => !prevState);
@@ -17,7 +17,7 @@ export function InputSecret({ className, id, ...props }: Omit<React.ComponentPro
 			<Input
 				id={id}
 				className={cn("px-9", className)}
-				placeholder="Password"
+				placeholder={placeholder}
 				type={isVisible ? "text" : "password"}
 				{...props}
 			/>
